@@ -1,1 +1,1 @@
-# shoppies
+# The Shoppies
