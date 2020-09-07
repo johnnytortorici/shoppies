@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+
+import { SearchContext } from "./context/SearchContext";
 
 import { BiSearchAlt2 } from "react-icons/bi";
 
-const Search = ({ search, setSearch }) => {
+const Search = () => {
+  const { search, setSearch } = useContext(SearchContext);
+
   return (
     <Wrapper>
       <label htmlFor="search">Movie title</label>
@@ -22,7 +26,7 @@ const Search = ({ search, setSearch }) => {
 
 const Wrapper = styled.div`
   padding: 30px;
-  width: 80vw;
+  width: 100%;
   background-color: #fff;
   border: 1px solid #d3d3d3;
   border-radius: 5px;

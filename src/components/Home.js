@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+
+import { NominationContext } from "./context/NominationContext";
 
 import Search from "./Search";
 import Results from "./Results";
 import Nominations from "./Nominations";
 
 import { BiCameraMovie } from "react-icons/bi";
+import { FiCheckCircle } from "react-icons/fi";
 
 const Home = () => {
-  const [search, setSearch] = useState("");
+  const { success } = useContext(NominationContext);
 
   return (
     <Wrapper>
@@ -16,9 +19,15 @@ const Home = () => {
         <BiCameraMovie />
         The Shoppies
       </Title>
-      <Search search={search} setSearch={setSearch} />
+      <Search />
+      <SuccessMsg success={success}>
+        <Check size={30} />
+        <div>
+          <p>Thank you for nominating your top 5 movies!</p>
+        </div>
+      </SuccessMsg>
       <ActionsWrapper>
-        <Results search={search} />
+        <Results />
         <Nominations />
       </ActionsWrapper>
     </Wrapper>
@@ -30,7 +39,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  padding: 50px;
 `;
 
 const Title = styled.h1`
@@ -43,7 +52,24 @@ const ActionsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 80vw;
+  width: 100%;
+`;
+
+const SuccessMsg = styled.div`
+  display: ${(prop) => (prop.success ? "flex" : "none")};
+  align-items: center;
+  padding: 20px 30px;
+  width: 100%;
+  color: #fff;
+  background-color: #5ecc62;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px #d3d3d3;
+`;
+
+const Check = styled(FiCheckCircle)`
+  flex-shrink: 0;
+  margin-right: 20px;
 `;
 
 export default Home;

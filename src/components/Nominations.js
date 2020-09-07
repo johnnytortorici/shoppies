@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import Button from "./buttons/PrimaryButton";
 
+import { NominationContext } from "./context/NominationContext";
+
 const Nominations = () => {
+  const { nominations, removeNomination } = useContext(NominationContext);
+
   return (
     <Wrapper>
       <h2>Nominations</h2>
       <ul>
-        <li>
-          Rambo (1999)
-          <NominateBtn>Remove</NominateBtn>
-        </li>
+        {nominations.map((nomination, index) => {
+          return (
+            <li key={`nomination-${index}`}>
+              {nomination.Title} {`(${nomination.Year})`}
+              <RemoveBtn onClick={() => removeNomination(index)}>
+                Remove
+              </RemoveBtn>
+            </li>
+          );
+        })}
       </ul>
     </Wrapper>
   );
@@ -35,7 +45,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const NominateBtn = styled(Button)`
+const RemoveBtn = styled(Button)`
   font-size: 0.9em;
   margin-left: 10px;
 `;
