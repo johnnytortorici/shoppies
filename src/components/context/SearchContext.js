@@ -16,7 +16,7 @@ export const SearchProvider = ({ children }) => {
     setDebounce(
       setTimeout(() => {
         if (search.length > 1) {
-          fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`)
+          fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`)
             .then((res) => res.json())
             .then((json) => {
               if (json.Response === "False") {
