@@ -10,39 +10,31 @@ const Results = () => {
   const { search, results, error } = useContext(SearchContext);
   const { nominations, addNomination } = useContext(NominationContext);
 
-  if (results[0])
-    return (
-      <Wrapper>
-        <h2>Results for "{search}"</h2>
-        <ErrorMsg>{error}</ErrorMsg>
-        <ul>
-          {results.map((result, index) => {
-            return (
-              <li key={`result-${index}`}>
-                {result.Title} {`(${result.Year})`}
-                <NominateBtn
-                  onClick={() => addNomination(result)}
-                  disabled={
-                    nominations.find(
-                      (nomination) => nomination.imdbID === result.imdbID
-                    ) || nominations.length > 4
-                  }
-                >
-                  Nominate
-                </NominateBtn>
-              </li>
-            );
-          })}
-        </ul>
-      </Wrapper>
-    );
-  else
-    return (
-      <Wrapper>
-        {search.length > 1 ? <h2>Results for "{search}"</h2> : <h2>Results</h2>}
-        <ErrorMsg>{error}</ErrorMsg>
-      </Wrapper>
-    );
+  return (
+    <Wrapper>
+      {search.length > 1 ? <h2>Results for "{search}"</h2> : <h2>Results</h2>}
+      <ErrorMsg>{error}</ErrorMsg>
+      <ul>
+        {results.map((result, index) => {
+          return (
+            <li key={`result-${index}`}>
+              {result.Title} {`(${result.Year})`}
+              <NominateBtn
+                onClick={() => addNomination(result)}
+                disabled={
+                  nominations.find(
+                    (nomination) => nomination.imdbID === result.imdbID
+                  ) || nominations.length > 4
+                }
+              >
+                Nominate
+              </NominateBtn>
+            </li>
+          );
+        })}
+      </ul>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`

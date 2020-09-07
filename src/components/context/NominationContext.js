@@ -21,16 +21,19 @@ export const NominationProvider = ({ children }) => {
     }
   };
 
+  // when user clicks 'Nominate'
   const addNomination = (result) => {
     setNominations((nominations) => [...nominations, result]);
   };
 
+  // when user clicks 'Remove'
   const removeNomination = (index) => {
     const nominationsCopy = [...nominations];
     nominationsCopy.splice(index, 1);
     setNominations(nominationsCopy);
   };
 
+  // on any change to nominations array, update localStorage & set success state
   useEffect(() => {
     setLocalStorage(nominations);
 

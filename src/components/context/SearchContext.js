@@ -12,6 +12,7 @@ export const SearchProvider = ({ children }) => {
   const handleSearch = () => {
     setError("");
 
+    // reset fetch timeout when user types within 500 ms per char to avoid redundant fetches
     clearTimeout(debounce);
     setDebounce(
       setTimeout(() => {
@@ -31,6 +32,7 @@ export const SearchProvider = ({ children }) => {
     );
   };
 
+  // trigger handleSearch on every change in the search input
   useEffect(() => {
     handleSearch();
 

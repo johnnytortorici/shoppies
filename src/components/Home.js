@@ -40,12 +40,20 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 50px;
+
+  @media (max-width: 600px) {
+    padding: 50px 20px;
+  }
 `;
 
 const Title = styled.h1`
   display: flex;
   align-items: center;
   padding-bottom: 30px;
+
+  @media (max-width: 600px) {
+    font-size: 1.8em;
+  }
 `;
 
 const ActionsWrapper = styled.div`

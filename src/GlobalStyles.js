@@ -12,6 +12,10 @@ export default createGlobalStyle`
     font-size: 1.2em;
     font-family: 'Raleway', sans-serif;
     background-color: #F5F7F8;
+
+    @media (max-width: 600px) {
+      font-size: 1em;
+    }
   }
 
   input {
@@ -36,5 +40,9 @@ export default createGlobalStyle`
   li {
     padding-top: 15px;
     margin-left: 40px;
+
+    @media (max-width: 600px) {
+      margin-left: 20px;
+    }
   }
 `;
